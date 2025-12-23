@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Tambah Data</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h2>Tambah Data Siswa</h2>
+
+    <form method="POST">
+        <label>Gender</label>
+        <select name="gender">
+            <option>male</option>
+            <option>female</option>
+        </select>
+
+        <label>Race</label>
+        <input type="text" name="race" required>
+
+        <label>Parental Education</label>
+        <input type="text" name="parental" required>
+
+        <label>Lunch</label>
+        <select name="lunch">
+            <option>standard</option>
+            <option>free/reduced</option>
+        </select>
+
+        <label>Test Preparation</label>
+        <select name="test">
+            <option>none</option>
+            <option>completed</option>
+        </select>
+
+        <label>Math Score</label>
+        <input type="number" name="math" required>
+
+        <label>Reading Score</label>
+        <input type="number" name="reading" required>
+
+        <label>Writing Score</label>
+        <input type="number" name="writing" required>
+
+        <button class="btn btn-success">Simpan</button>
+    </form>
+</div>
+
+</body>
+</html>

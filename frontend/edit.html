@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Edit Data</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h2>Edit Nilai</h2>
+
+    <form method="POST">
+        <label>Math</label>
+        <input type="number" name="math" value="{{ data['math score'] }}">
+
+        <label>Reading</label>
+        <input type="number" name="reading" value="{{ data['reading score'] }}">
+
+        <label>Writing</label>
+        <input type="number" name="writing" value="{{ data['writing score'] }}">
+
+        <button class="btn btn-success">Update</button>
+    </form>
+</div>
+
+</body>
+</html>

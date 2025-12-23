@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Prediksi</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h2>Prediksi Nilai Matematika</h2>
+
+    <form method="POST">
+        <input type="number" name="reading" placeholder="Reading Score" required>
+        <input type="number" name="writing" placeholder="Writing Score" required>
+
+        <select name="gender">
+            <option value="0">Female</option>
+            <option value="1">Male</option>
+        </select>
+
+        <select name="lunch">
+            <option value="0">Free</option>
+            <option value="1">Standard</option>
+        </select>
+
+        <select name="test">
+            <option value="0">None</option>
+            <option value="1">Completed</option>
+        </select>
+
+        <button class="btn">Prediksi</button>
+    </form>
+
+    {% if hasil %}
+    <h3>📈 Prediksi Nilai Math: {{ hasil|round(2) }}</h3>
+    {% endif %}
+</div>
+
+</body>
+</html>

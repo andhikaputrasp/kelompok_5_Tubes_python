@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Data Siswa</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+
+<div class="container">
+    <h1>📊 Data Nilai Siswa</h1>
+
+    <a href="/tambah" class="btn btn-success"> Tambah Data</a>
+    <a href="/predict" class="btn">🔮 Prediksi Nilai</a>
+
+    <table>
+        <tr>
+            <th>No</th>
+            <th>Gender</th>
+            <th>Math</th>
+            <th>Reading</th>
+            <th>Writing</th>
+            <th>Aksi</th>
+        </tr>
+
+        {% for i, row in data %}
+        <tr>
+            <td>{{ i }}</td>
+            <td>{{ row['gender'] }}</td>
+            <td>{{ row['math score'] }}</td>
+            <td>{{ row['reading score'] }}</td>
+            <td>{{ row['writing score'] }}</td>
+            <td>
+                <a href="/edit/{{ i }}" class="btn">✏️ Edit</a>
+                <a href="/hapus/{{ i }}" class="btn btn-danger">🗑️ Hapus</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+</div>
+
+</body>
+</html>
