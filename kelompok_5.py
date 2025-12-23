@@ -1,63 +1,49 @@
 from flask import Flask, render_template, request, redirect, url_for
 import pandas as pd
-
-from sklearn.model_selection import train_test_split
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import LabelEncoder
 
-
 app = Flask(__name__, template_folder="frontend")
 
-FILE_NAME = "StudentsPerformance.csv"
+file_kelompok_5 = "StudentsPerformance.csv"
 
-# LOAD & SAVE
+# Load DATA
 def load_data():
-    return pd.read_csv(FILE_NAME)
+    try:
+        return pd.read_csv(file_kelompok_5)
+    except FileNotFoundError:
+        df = pd.DataFrame(columns=[
+            "gender", "race/ethnicity", "parental level of education",
+            "lunch", "test preparation course",
+            "math score", "reading score", "writing score"
+        ])
+        df.to_csv(file_kelompok_5, index=False)
+        return df
+
 
 def save_data(df):
-    df.to_csv(FILE_NAME, index=False)
-
-# ML
-def train_model():
-    df = load_data()
-
-    encoder = LabelEncoder()
-    df["gender"] = encoder.fit_transform(df["gender"])
-    df["lunch"] = encoder.fit_transform(df["lunch"])
-    df["test preparation course"] = encoder.fit_transform(
-        df["test preparation course"]
-    )
-
-    X = df[
-        [
-            "reading score",
-            "writing score",
-            "gender",
-            "lunch",
-            "test preparation course",
-        ]
-    ]
-    y = df["math score"]
-
-    X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.2, random_state=42
-    )
-
-    model = LinearRegression()
-    model.fit(X_train, y_train)
-
-    return model
+    df.to_csv(file_kelompok_5, index=False)
 
 
-model = train_model()
-
-# ROUTES
+# HALAMAN UTAMA
 @app.route("/")
 def index():
     df = load_data()
+
+    gender = request.args.get("gender")
+    show_all = request.args.get("show")
+
+    # SEARCH GENDER
+    if gender:
+        df = df[df["gender"] == gender]
+
+    # DEFAULT 10 DATA
+    if show_all != "true":
+        df = df.head(10)
+
     return render_template("index.html", data=df.iterrows())
 
-
+# TAMBAH DATA
 @app.route("/tambah", methods=["GET", "POST"])
 def tambah():
     if request.method == "POST":
@@ -66,62 +52,68 @@ def tambah():
         data_baru = {
             "gender": request.form["gender"],
             "race/ethnicity": request.form["race"],
-            "parental level of education": request.form["parental"],
+            "parental level of education": request.form["parent"],
             "lunch": request.form["lunch"],
-            "test preparation course": request.form["test"],
+            "test preparation course": request.form["prep"],
             "math score": int(request.form["math"]),
             "reading score": int(request.form["reading"]),
-            "writing score": int(request.form["writing"]),
+            "writing score": int(request.form["writing"])
         }
 
-        df = pd.concat([df, pd.DataFrame([data_baru])], ignore_index=True)
+        df.loc[len(df)] = data_baru
         save_data(df)
-
         return redirect(url_for("index"))
 
     return render_template("tambah.html")
 
 
+# EDIT DATA
 @app.route("/edit/<int:index>", methods=["GET", "POST"])
 def edit(index):
     df = load_data()
-    data = df.loc[index]
 
     if request.method == "POST":
-        df.at[index, "math score"] = int(request.form["math"])
-        df.at[index, "reading score"] = int(request.form["reading"])
-        df.at[index, "writing score"] = int(request.form["writing"])
+        df.loc[index, "math score"] = int(request.form["math"])
+        df.loc[index, "reading score"] = int(request.form["reading"])
+        df.loc[index, "writing score"] = int(request.form["writing"])
         save_data(df)
-
         return redirect(url_for("index"))
 
-    return render_template("edit.html", data=data, index=index)
+    return render_template("edit.html", data=df.loc[index], index=index)
 
 
+# HAPUS DATA
 @app.route("/hapus/<int:index>")
 def hapus(index):
     df = load_data()
-    df = df.drop(index)
+    df = df.drop(index).reset_index(drop=True)
     save_data(df)
-
     return redirect(url_for("index"))
 
-
-# PREDIKSI mL
+# MACHINE LEARNING
 @app.route("/predict", methods=["GET", "POST"])
 def predict():
     hasil = None
 
     if request.method == "POST":
+        df = load_data()
+
+        enc = LabelEncoder()
+        df["gender"] = enc.fit_transform(df["gender"])
+        df["lunch"] = enc.fit_transform(df["lunch"])
+        df["test preparation course"] = enc.fit_transform(df["test preparation course"])
+
+        X = df[["gender", "reading score", "writing score"]]
+        y = df["math score"]
+
+        model = LinearRegression()
+        model.fit(X, y)
+
+        gender = enc.fit_transform([request.form["gender"]])[0]
         reading = int(request.form["reading"])
         writing = int(request.form["writing"])
-        gender = int(request.form["gender"])
-        lunch = int(request.form["lunch"])
-        test = int(request.form["test"])
 
-        hasil = model.predict(
-            [[reading, writing, gender, lunch, test]]
-        )[0]
+        hasil = model.predict([[gender, reading, writing]])[0]
 
     return render_template("predict.html", hasil=hasil)
 
