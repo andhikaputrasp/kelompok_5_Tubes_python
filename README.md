@@ -1,10 +1,10 @@
 # Aplikasi Prediksi Nilai Siswa Berbasis Flask & Machine Learning 
 
-## Kelompok 5
-Andhika Sulaeman Putra - 101072400021
-Muhamad Satya Wirayudha - 101072400026
-Aalia Salsabila Ridwan - 101072400078
-Virna Roviana Putri - 101072430006
+## Kelompok 5_24-03
+Andhika Sulaeman Putra - 101072400021,
+Muhamad Satya Wirayudha - 101072400026,
+Aalia Salsabila Ridwan - 101072400078,
+Virna Roviana Putri - 101072430006.
 
 ## Deskripsi
 Aplikasi ini merupakan sistem pengelolaan data nilai siswa yang dilengkapi dengan
@@ -13,13 +13,14 @@ Aplikasi dibangun menggunakan Flask sebagai backend dan HTML-CSS sebagai fronten
 
 ## Fitur
 - CRUD data siswa (Tambah, Edit, Hapus)
-- Tabel data nilai siswa
-- Prediksi nilai matematika berbasis Machine Learning
+- Tabel data nilai siswa 
+- Prediksi berbasis Machine Learning
 - Tampilan frontend sederhana dan responsif
+- serarch gender
 - Deployment online menggunakan Replit
 
 ## Teknologi
-- Python
+- Python 14
 - Flask
 - Pandas
 - Scikit-Learn

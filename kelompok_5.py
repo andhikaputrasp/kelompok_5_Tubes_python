@@ -3,12 +3,12 @@ import pandas as pd
 from sklearn.linear_model import LinearRegression
 from sklearn.preprocessing import LabelEncoder
 
-app = Flask(__name__, template_folder="frontend")
+app_kel_5 = Flask(__name__, template_folder="frontend")
 
 file_kelompok_5 = "StudentsPerformance.csv"
 
 # Load DATA
-def load_data():
+def load_data_kel_5():
     try:
         return pd.read_csv(file_kelompok_5)
     except FileNotFoundError:
@@ -21,14 +21,14 @@ def load_data():
         return df
 
 
-def save_data(df):
+def save_kel_5(df):
     df.to_csv(file_kelompok_5, index=False)
 
 
 # HALAMAN UTAMA
-@app.route("/")
+@app_kel_5.route("/")
 def index():
-    df = load_data()
+    df = load_data_kel_5()
 
     gender = request.args.get("gender")
     show_all = request.args.get("show")
@@ -44,12 +44,12 @@ def index():
     return render_template("index.html", data=df.iterrows())
 
 # TAMBAH DATA
-@app.route("/tambah", methods=["GET", "POST"])
+@app_kel_5.route("/tambah", methods=["GET", "POST"])
 def tambah():
     if request.method == "POST":
-        df = load_data()
+        df = load_data_kel_5()
 
-        data_baru = {
+        data_tambahan_kel_5 = {
             "gender": request.form["gender"],
             "race/ethnicity": request.form["race"],
             "parental level of education": request.form["parent"],
@@ -60,43 +60,43 @@ def tambah():
             "writing score": int(request.form["writing"])
         }
 
-        df.loc[len(df)] = data_baru
-        save_data(df)
+        df.loc[len(df)] = data_tambahan_kel_5
+        save_kel_5(df)
         return redirect(url_for("index"))
 
     return render_template("tambah.html")
 
 
 # EDIT DATA
-@app.route("/edit/<int:index>", methods=["GET", "POST"])
+@app_kel_5.route("/edit/<int:index>", methods=["GET", "POST"])
 def edit(index):
-    df = load_data()
+    df = load_data_kel_5()
 
     if request.method == "POST":
         df.loc[index, "math score"] = int(request.form["math"])
         df.loc[index, "reading score"] = int(request.form["reading"])
         df.loc[index, "writing score"] = int(request.form["writing"])
-        save_data(df)
+        save_kel_5(df)
         return redirect(url_for("index"))
 
     return render_template("edit.html", data=df.loc[index], index=index)
 
 
 # HAPUS DATA
-@app.route("/hapus/<int:index>")
+@app_kel_5.route("/hapus/<int:index>")
 def hapus(index):
-    df = load_data()
+    df = load_data_kel_5()
     df = df.drop(index).reset_index(drop=True)
-    save_data(df)
+    save_kel_5(df)
     return redirect(url_for("index"))
 
 # MACHINE LEARNING
-@app.route("/predict", methods=["GET", "POST"])
+@app_kel_5.route("/predict", methods=["GET", "POST"])
 def predict():
     hasil = None
 
     if request.method == "POST":
-        df = load_data()
+        df = load_data_kel_5()
 
         enc = LabelEncoder()
         df["gender"] = enc.fit_transform(df["gender"])
@@ -119,4 +119,4 @@ def predict():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app_kel_5.run(debug=True)
