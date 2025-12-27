@@ -111,4 +111,4 @@ def predict():
     return render_template("predict.html", hasil=hasil, title="Prediksi")
 
 if __name__ == "__main__":
-    app_kel_5.run(debug=True)
+    app_kel_5.run(host="0.0.0.0", port=5000, debug=True)
