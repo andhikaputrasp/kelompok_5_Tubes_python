@@ -7,7 +7,6 @@ app_kel_5 = Flask(__name__, template_folder="frontend")
 
 file_kelompok_5 = "StudentsPerformance.csv"
 
-# Load DATA
 def load_data_kel_5():
     try:
         return pd.read_csv(file_kelompok_5)
@@ -20,12 +19,9 @@ def load_data_kel_5():
         df.to_csv(file_kelompok_5, index=False)
         return df
 
-
 def save_kel_5(df):
     df.to_csv(file_kelompok_5, index=False)
 
-
-# HALAMAN UTAMA
 @app_kel_5.route("/")
 def index():
     df = load_data_kel_5()
@@ -33,23 +29,20 @@ def index():
     gender = request.args.get("gender")
     show_all = request.args.get("show")
 
-    # SEARCH GENDER
     if gender:
         df = df[df["gender"] == gender]
 
-    # DEFAULT 10 DATA
     if show_all != "true":
         df = df.head(10)
 
-    return render_template("index.html", data=df.iterrows())
+    return render_template("index.html", data=df.iterrows(), title="Dashboard")
 
-# TAMBAH DATA
 @app_kel_5.route("/tambah", methods=["GET", "POST"])
 def tambah():
     if request.method == "POST":
         df = load_data_kel_5()
 
-        data_tambahan_kel_5 = {
+        data_baru = {
             "gender": request.form["gender"],
             "race/ethnicity": request.form["race"],
             "parental level of education": request.form["parent"],
@@ -60,14 +53,12 @@ def tambah():
             "writing score": int(request.form["writing"])
         }
 
-        df.loc[len(df)] = data_tambahan_kel_5
+        df.loc[len(df)] = data_baru
         save_kel_5(df)
         return redirect(url_for("index"))
 
-    return render_template("tambah.html")
+    return render_template("tambah.html", title="Tambah Data")
 
-
-# EDIT DATA
 @app_kel_5.route("/edit/<int:index>", methods=["GET", "POST"])
 def edit(index):
     df = load_data_kel_5()
@@ -79,10 +70,13 @@ def edit(index):
         save_kel_5(df)
         return redirect(url_for("index"))
 
-    return render_template("edit.html", data=df.loc[index], index=index)
+    return render_template(
+        "edit.html",
+        data=df.loc[index],
+        index=index,
+        title="Edit Data"
+    )
 
-
-# HAPUS DATA
 @app_kel_5.route("/hapus/<int:index>")
 def hapus(index):
     df = load_data_kel_5()
@@ -90,7 +84,6 @@ def hapus(index):
     save_kel_5(df)
     return redirect(url_for("index"))
 
-# MACHINE LEARNING
 @app_kel_5.route("/predict", methods=["GET", "POST"])
 def predict():
     hasil = None
@@ -115,8 +108,7 @@ def predict():
 
         hasil = model.predict([[gender, reading, writing]])[0]
 
-    return render_template("predict.html", hasil=hasil)
-
+    return render_template("predict.html", hasil=hasil, title="Prediksi")
 
 if __name__ == "__main__":
     app_kel_5.run(debug=True)

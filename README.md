@@ -1,4 +1,4 @@
-# Aplikasi Prediksi Nilai Siswa Berbasis Flask & Machine Learning 
+# Manajemen nilai mahasiswa
 
 ## Kelompok 5_24-03
 Andhika Sulaeman Putra - 101072400021,

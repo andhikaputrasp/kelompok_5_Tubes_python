@@ -1,8 +1,15 @@
-<h2>Edit Data Siswa</h2>
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Edit Data</h2>
 
 <form method="post">
-    Math: <input type="number" name="math" value="{{ data['math score'] }}"><br>
-    Reading: <input type="number" name="reading" value="{{ data['reading score'] }}"><br>
-    Writing: <input type="number" name="writing" value="{{ data['writing score'] }}"><br><br>
-    <button>Update</button>
+    <input type="number" name="math" value="{{ data['math score'] }}" required>
+    <input type="number" name="reading" value="{{ data['reading score'] }}" required>
+    <input type="number" name="writing" value="{{ data['writing score'] }}" required>
+
+    <button type="submit">Update</button>
+    <a href="/">Cancel</a>
 </form>
+
+{% endblock %}

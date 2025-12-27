@@ -1,18 +1,23 @@
-<h2>Prediksi Nilai Matematika (Machine Learning)</h2>
+{% extends "base.html" %}
+{% block content %}
+
+<h2>Prediksi Nilai Matematika</h2>
 
 <form method="post">
-    Gender:
-    <select name="gender">
+    <select name="gender" required>
         <option value="male">Male</option>
         <option value="female">Female</option>
-    </select><br><br>
+    </select>
 
-    Reading: <input type="number" name="reading"><br>
-    Writing: <input type="number" name="writing"><br><br>
+    <input type="number" name="reading" placeholder="Reading Score" required>
+    <input type="number" name="writing" placeholder="Writing Score" required>
 
-    <button>Prediksi</button>
+    <button type="submit">Prediksi</button>
+    <a href="/">Cancel</a>
 </form>
 
 {% if hasil %}
-<h3>Hasil Prediksi: {{ hasil|round(2) }}</h3>
+<p>Hasil Prediksi: {{ hasil }}</p>
 {% endif %}
+
+{% endblock %}

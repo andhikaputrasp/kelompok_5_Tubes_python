@@ -1,13 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+
 <h2>Tambah Data Siswa</h2>
 
 <form method="post">
-    Gender: <input name="gender"><br>
-    Race: <input name="race"><br>
-    Parent Education: <input name="parent"><br>
-    Lunch: <input name="lunch"><br>
-    Prep Course: <input name="prep"><br>
-    Math: <input type="number" name="math"><br>
-    Reading: <input type="number" name="reading"><br>
-    Writing: <input type="number" name="writing"><br><br>
-    <button>Simpan</button>
+    <input name="gender" placeholder="Gender" required>
+    <input name="race" placeholder="Race/Ethnicity" required>
+    <input name="parent" placeholder="Parental Education" required>
+    <input name="lunch" placeholder="Lunch" required>
+    <input name="prep" placeholder="Preparation Course" required>
+
+    <input type="number" name="math" placeholder="Math Score" required>
+    <input type="number" name="reading" placeholder="Reading Score" required>
+    <input type="number" name="writing" placeholder="Writing Score" required>
+
+    <button type="submit">Simpan</button>
+    <a href="/">Cancel</a>
 </form>
+
+{% endblock %}

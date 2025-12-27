@@ -1,65 +1,42 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Data Siswa</title>
-    <link rel="stylesheet" href="/static/style.css">
-</head>
-<body>
+{% extends "base.html" %}
+{% block content %}
 
 <h2>Data Siswa</h2>
 
-<!-- MENU UTAMA -->
-<a href="/tambah">Tambah Data</a> |
-<a href="/predict">Prediksi Nilai (ML)</a>
-
-<!-- TABEL DATA -->
-<table>
-    <tr>
-        <th>No</th>
-        <th>Gender</th>
-        <th>Math</th>
-        <th>Reading</th>
-        <th>Writing</th>
-        <th>Aksi</th>
-    </tr>
-
-    {% for i, row in data %}
-    <tr>
-        <td>{{ i }}</td>
-        <td>{{ row['gender'] }}</td>
-        <td>{{ row['math score'] }}</td>
-        <td>{{ row['reading score'] }}</td>
-        <td>{{ row['writing score'] }}</td>
-        <td>
-            <a href="/edit/{{ i }}">Edit</a> |
-            <a href="/hapus/{{ i }}">Hapus</a>
-        </td>
-    </tr>
-    {% endfor %}
-</table>
-
-<br><hr><br>
-
-<!-- SEARCH & FILTER (PALING BAWAH) -->
-<h3>Filter & Tampilan Data</h3>
-
 <form method="get">
-    <label>Filter Gender:</label>
     <select name="gender">
-        <option value="">Semua</option>
+        <option value="">Semua Gender</option>
         <option value="male">Male</option>
         <option value="female">Female</option>
     </select>
 
-    <br><br>
-
-    <button type="submit">Terapkan Filter</button>
+    <button type="submit">Filter</button>
+    <a href="/?show=true">Tampilkan Semua Data</a>
 </form>
 
-<br>
+<table>
+<tr>
+    <th>No</th>
+    <th>Gender</th>
+    <th>Math</th>
+    <th>Reading</th>
+    <th>Writing</th>
+    <th>Aksi</th>
+</tr>
 
-<a href="/">Tampilkan 10 Data</a> |
-<a href="/?show=true">Tampilkan Semua Data</a>
+{% for i, row in data %}
+<tr>
+    <td>{{ i }}</td>
+    <td>{{ row['gender'] }}</td>
+    <td>{{ row['math score'] }}</td>
+    <td>{{ row['reading score'] }}</td>
+    <td>{{ row['writing score'] }}</td>
+    <td>
+        <a href="/edit/{{ i }}">Edit</a> |
+        <a href="/hapus/{{ i }}">Hapus</a>
+    </td>
+</tr>
+{% endfor %}
+</table>
 
-</body>
-</html>
+{% endblock %}
