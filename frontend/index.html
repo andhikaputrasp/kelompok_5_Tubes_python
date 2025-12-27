@@ -32,8 +32,10 @@
     <td>{{ row['reading score'] }}</td>
     <td>{{ row['writing score'] }}</td>
     <td>
-        <a href="/edit/{{ i }}">Edit</a> |
-        <a href="/hapus/{{ i }}">Hapus</a>
+        <div class="actions">
+            <a href="/edit/{{ i }}" class="edit-link">Edit</a> |
+            <a href="/hapus/{{ i }}" class="delete-link">Hapus</a>
+        </div>
     </td>
 </tr>
 {% endfor %}

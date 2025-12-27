@@ -4,18 +4,58 @@
 <h2>Tambah Data Siswa</h2>
 
 <form method="post">
-    <input name="gender" placeholder="Gender" required>
-    <input name="race" placeholder="Race/Ethnicity" required>
-    <input name="parent" placeholder="Parental Education" required>
-    <input name="lunch" placeholder="Lunch" required>
-    <input name="prep" placeholder="Preparation Course" required>
+    <div style="display: flex; flex-direction: column; gap: 15px; width: 100%; max-width: 500px;">
+        <label>Gender:</label>
+        <select name="gender" required>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
 
-    <input type="number" name="math" placeholder="Math Score" required>
-    <input type="number" name="reading" placeholder="Reading Score" required>
-    <input type="number" name="writing" placeholder="Writing Score" required>
+        <label>Race/Ethnicity:</label>
+        <select name="race" required>
+            <option value="group A">Group A</option>
+            <option value="group B">Group B</option>
+            <option value="group C">Group C</option>
+            <option value="group D">Group D</option>
+            <option value="group E">Group E</option>
+        </select>
 
-    <button type="submit">Simpan</button>
-    <a href="/">Cancel</a>
+        <label>Parental Level of Education:</label>
+        <select name="parent" required>
+            <option value="some high school">Some High School</option>
+            <option value="high school">High School</option>
+            <option value="some college">Some College</option>
+            <option value="associate's degree">Associate's Degree</option>
+            <option value="bachelor's degree">Bachelor's Degree</option>
+            <option value="master's degree">Master's Degree</option>
+        </select>
+
+        <label>Lunch:</label>
+        <select name="lunch" required>
+            <option value="standard">Standard</option>
+            <option value="free/reduced">Free/Reduced</option>
+        </select>
+
+        <label>Test Preparation Course:</label>
+        <select name="prep" required>
+            <option value="none">None</option>
+            <option value="completed">Completed</option>
+        </select>
+
+        <label>Math Score:</label>
+        <input type="number" name="math" min="0" max="100" required>
+
+        <label>Reading Score:</label>
+        <input type="number" name="reading" min="0" max="100" required>
+
+        <label>Writing Score:</label>
+        <input type="number" name="writing" min="0" max="100" required>
+
+        <div style="margin-top: 10px;">
+            <button type="submit">Simpan Data</button>
+            <a href="/" class="btn-secondary" style="background-color: #6c757d; color: white; text-decoration: none; padding: 10px 25px; border-radius: 6px; display: inline-block; text-align: center; vertical-align: middle;">Batal</a>
+        </div>
+    </div>
 </form>
 
 {% endblock %}
