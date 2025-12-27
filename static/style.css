@@ -92,79 +92,31 @@ select, input {
     min-width: 200px;
 }
 
-button {
+button, .edit-link, .delete-link, .btn-show-all {
     background-color: var(--primary-color);
     color: white;
     border: none;
-    padding: 10px 25px;
+    padding: 0 25px;
     border-radius: 6px;
     cursor: pointer;
     font-weight: 600;
     transition: background 0.3s ease;
+    height: 42px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1rem;
+    text-decoration: none;
+    box-sizing: border-box;
+    min-width: 120px;
 }
 
 button:hover {
     background-color: #357abd;
 }
 
-.btn-secondary {
-    background-color: #6c757d;
-    text-decoration: none;
-    color: white;
-    padding: 10px 20px;
-    border-radius: 6px;
-    display: inline-block;
-}
-
-/* Tables */
-table {
-    width: 100%;
-    border-collapse: separate;
-    border-spacing: 0;
-    margin-top: 1.5rem;
-    border-radius: 8px;
-    overflow: hidden;
-}
-
-th {
-    background-color: #f8f9fa;
-    color: var(--secondary-color);
-    font-weight: 600;
-    text-align: left;
-    padding: 15px;
-    border-bottom: 2px solid #dee2e6;
-}
-
-td {
-    padding: 15px;
-    border-bottom: 1px solid #eee;
-}
-
-tr:hover {
-    background-color: #f1f8ff;
-}
-
-.actions {
-    display: flex;
-    gap: 8px;
-    align-items: center;
-}
-
-.edit-link, .delete-link, .btn-show-all {
-    text-decoration: none;
-    font-weight: 600;
-    padding: 10px 25px;
-    border-radius: 6px;
-    transition: all 0.3s ease;
-    display: inline-block;
-    font-size: 1rem;
-    border: none;
-    cursor: pointer;
-}
-
 .edit-link { 
     background-color: var(--primary-color);
-    color: white;
 }
 
 .edit-link:hover {
@@ -173,7 +125,6 @@ tr:hover {
 
 .delete-link { 
     background-color: var(--accent-color);
-    color: white;
 }
 
 .delete-link:hover {
@@ -182,7 +133,6 @@ tr:hover {
 
 .btn-show-all {
     background-color: var(--secondary-color);
-    color: white;
 }
 
 .btn-show-all:hover {
