@@ -74,7 +74,7 @@ h2 {
     border-bottom: 2px solid #f1f5f9;
 }
 
-/* Forms */
+
 form {
     margin-bottom: 3rem;
     display: flex;
@@ -176,7 +176,7 @@ button:hover, .btn-primary:hover {
     box-shadow: 0 4px 12px rgba(100, 116, 139, 0.2);
 }
 
-/* Tables */
+
 table {
     width: 100%;
     border-collapse: separate;
@@ -224,7 +224,6 @@ tr:hover {
     font-size: 0.875rem;
 }
 
-/* Results */
 .result-card {
     background: #f0f9ff;
     border: 1px solid #bae6fd;

@@ -1,4 +1,4 @@
-# Manajemen nilai mahasiswa
+# Manajemen Nilai Mahasiswa
 
 ## Kelompok 5_24-03
 Andhika Sulaeman Putra - 101072400021,

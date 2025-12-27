@@ -5,7 +5,9 @@ from sklearn.preprocessing import LabelEncoder
 
 app_kel_5 = Flask(__name__, template_folder="frontend")
 
+#ambil sata Dari file csv
 file_kelompok_5 = "StudentsPerformance.csv"
+
 
 def load_data_kel_5():
     try:
@@ -18,6 +20,7 @@ def load_data_kel_5():
         ])
         df.to_csv(file_kelompok_5, index=False)
         return df
+
 
 def save_kel_5(df):
     df.to_csv(file_kelompok_5, index=False)
