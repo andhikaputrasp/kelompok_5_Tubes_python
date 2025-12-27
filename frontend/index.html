@@ -11,7 +11,11 @@
     </select>
 
     <button type="submit">Filter</button>
-    <a href="/?show=true" class="btn-show-all">Tampilkan Semua Data</a>
+    {% if request.args.get('show') == 'true' %}
+        <a href="/" class="btn-show-all">Tampilkan 10 Data</a>
+    {% else %}
+        <a href="/?show=true" class="btn-show-all">Tampilkan Semua Data</a>
+    {% endif %}
 </form>
 
 <table>
