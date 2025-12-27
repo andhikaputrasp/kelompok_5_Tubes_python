@@ -144,15 +144,54 @@ tr:hover {
     background-color: #f1f8ff;
 }
 
-.actions a {
-    text-decoration: none;
-    font-weight: 500;
-    padding: 4px 8px;
-    border-radius: 4px;
+.actions {
+    display: flex;
+    gap: 8px;
+    align-items: center;
 }
 
-.edit-link { color: var(--primary-color); }
-.delete-link { color: var(--accent-color); }
+.edit-link, .delete-link, .btn-show-all {
+    text-decoration: none;
+    font-weight: 500;
+    padding: 6px 12px;
+    border-radius: 20px;
+    transition: all 0.3s ease;
+    display: inline-block;
+    font-size: 0.85rem;
+}
+
+.edit-link { 
+    background-color: #e3f2fd;
+    color: var(--primary-color);
+    border: 1px solid var(--primary-color);
+}
+
+.edit-link:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.delete-link { 
+    background-color: #fdeaea;
+    color: var(--accent-color);
+    border: 1px solid var(--accent-color);
+}
+
+.delete-link:hover {
+    background-color: var(--accent-color);
+    color: white;
+}
+
+.btn-show-all {
+    background-color: var(--secondary-color);
+    color: white;
+    margin-left: 10px;
+}
+
+.btn-show-all:hover {
+    background-color: #34495e;
+    transform: translateY(-1px);
+}
 
 /* Prediction Result */
 .result-card {
