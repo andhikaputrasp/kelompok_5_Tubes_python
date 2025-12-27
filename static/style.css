@@ -152,45 +152,41 @@ tr:hover {
 
 .edit-link, .delete-link, .btn-show-all {
     text-decoration: none;
-    font-weight: 500;
-    padding: 6px 12px;
-    border-radius: 20px;
+    font-weight: 600;
+    padding: 10px 25px;
+    border-radius: 6px;
     transition: all 0.3s ease;
     display: inline-block;
-    font-size: 0.85rem;
+    font-size: 1rem;
+    border: none;
+    cursor: pointer;
 }
 
 .edit-link { 
-    background-color: #e3f2fd;
-    color: var(--primary-color);
-    border: 1px solid var(--primary-color);
-}
-
-.edit-link:hover {
     background-color: var(--primary-color);
     color: white;
 }
 
+.edit-link:hover {
+    background-color: #357abd;
+}
+
 .delete-link { 
-    background-color: #fdeaea;
-    color: var(--accent-color);
-    border: 1px solid var(--accent-color);
+    background-color: var(--accent-color);
+    color: white;
 }
 
 .delete-link:hover {
-    background-color: var(--accent-color);
-    color: white;
+    background-color: #c0392b;
 }
 
 .btn-show-all {
     background-color: var(--secondary-color);
     color: white;
-    margin-left: 10px;
 }
 
 .btn-show-all:hover {
     background-color: #34495e;
-    transform: translateY(-1px);
 }
 
 /* Prediction Result */
