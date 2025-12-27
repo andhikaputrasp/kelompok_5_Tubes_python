@@ -35,7 +35,7 @@ def index():
     if show_all != "true":
         df = df.head(10)
 
-    return render_template("index.html", data=df.iterrows(), title="Dashboard")
+    return render_template("index.html", data=df.iterrows(), title="Kel 5")
 
 @app_kel_5.route("/tambah", methods=["GET", "POST"])
 def tambah():
