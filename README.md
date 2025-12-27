@@ -1,6 +1,6 @@
 # Manajemen Nilai Mahasiswa
 
-## Kelompok 5_24-03
+## Kelompok 5_S1TT-KJ-24-03
 Andhika Sulaeman Putra - 101072400021,
 Muhamad Satya Wirayudha - 101072400026,
 Aalia Salsabila Ridwan - 101072400078,
